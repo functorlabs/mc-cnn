@@ -97,13 +97,7 @@ def read_im(fname, downsample):
     return x[None]
 
 def tofile(fname, x):
-    if x is None:
-        open(fname + '.dim', 'w').write('0\n')
-        open(fname, 'w')
-    else:
-        x.tofile(fname)
-        open(fname + '.type', 'w').write(str(x.dtype))
-        open(fname + '.dim', 'w').write('\n'.join(map(str, x.shape)))
+  np.save(fname, x)
 
 rectification, color = sys.argv[1:]
 assert(rectification in set(['perfect', 'imperfect']))
